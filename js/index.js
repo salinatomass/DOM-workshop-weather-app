@@ -1,4 +1,4 @@
-import { updateData } from "./updateData.js";
+import { updateCards, initCards } from "./updateCards.js";
 
 const $searchButton = document.getElementById("search");
 const $submitButton = document.getElementById("submit");
@@ -10,8 +10,8 @@ $submitButton.addEventListener("click", (e) => {
   if ($searchButton.value) {
     desiredCity = $searchButton.value;
     $searchButton.value = "";
-    updateData(desiredCity);
+    updateCards(desiredCity);
   }
 });
 
-updateData();
+initCards("London", "Melbourne");
