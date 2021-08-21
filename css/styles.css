@@ -1,11 +1,22 @@
+/* 
+  1. Posicionamiento
+  2. Modelo de caja
+  3. Tipografía
+  4. Visuales
+  5. Otros
+*/
+
 :root {
   --primary-color: #170055;
+  --secondary-color: #b61919;
+  --outline-color: #3d087b;
   --white-color: #ffffff;
 
-  --primary-font: "Roboto", sans-serif;
+  --primary-font: "Urbanist", sans-serif;
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -15,6 +26,74 @@ html {
 }
 
 body {
+  font-family: var(--primary-font);
+  font-weight: normal;
+  font-size: 1.6rem;
   background: var(--primary-color);
   color: var(--white-color);
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 50px;
+}
+
+header h1 {
+  margin-bottom: 30px;
+  font-size: 3.6rem;
+}
+
+main {
+  margin-bottom: 70px;
+}
+.searcher {
+  margin-bottom: 50px;
+}
+.searcher form {
+  display: flex;
+}
+.searcher-input {
+  width: 100%;
+  max-width: 400px;
+  margin-right: 10px;
+  padding-bottom: 5px;
+  border: none;
+  border-bottom: 1px solid var(--outline-color);
+  font-family: var(--primary-font);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  background: transparent;
+  outline: none;
+}
+.searcher-input::placeholder {
+  color: var(--white-color);
+}
+.searcher-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  color: white;
+  background: var(--secondary-color);
+  box-shadow: 1px 3px 0 0 rgba(0, 0, 0, 0.2);
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+footer p {
+  font-weight: bold;
+}
+footer a {
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: var(--white-color);
+  text-decoration: none;
+}
+footer a:hover {
+  color: var(--secondary-color);
+}
+footer a.underline {
+  text-decoration: underline;
 }

@@ -5,17 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <h1>Simple Weather App</h1>
-    <div class="searcher">
-      <form action="">
-        <input id="search" type="text" placeholder="Search for a city" />
-        <input id="submit" type="submit" placeholder="submit" />
-      </form>
+    <div class="wrapper">
+      <header>
+        <h1>Simple Weather App</h1>
+      </header>
+      <main>
+        <section class="searcher">
+          <form>
+            <input
+              id="search"
+              class="searcher-input"
+              type="text"
+              placeholder="Search for a city"
+            />
+            <button id="submit" class="searcher-button" type="submit">
+              Submit
+            </button>
+          </form>
+        </section>
+        <section id="cards" class="cards"></section>
+      </main>
+      <footer>
+        <p>
+          Powered by
+          <a
+            class="underline"
+            target="_blank"
+            href="https://openweathermap.org/"
+            >https://openweathermap.org</a
+          >
+          | Made by
+          <a target="_blank" href="https://github.com/salinatomass"
+            >@salinatomass</a
+          >
+        </p>
+      </footer>
     </div>
-    <div id="cards" class="cards"></div>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>
