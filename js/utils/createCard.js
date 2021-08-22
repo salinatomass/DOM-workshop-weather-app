@@ -1,9 +1,9 @@
 const iconURL = "http://openweathermap.org/img/wn";
 
-const cardTemplate = ({ nameCity, weather, temp }) => {
+const cardTemplate = ({ nameCity, weather, temp, country }) => {
   return `<div class="card-item">
     <div class="card-miniwrapper">
-      <h2 class="card-city">${nameCity}</h2>
+      <h2 class="card-city">${nameCity}, ${country}</h2>
       <h3 class="card-temp">${temp}<span>°C</span></h3>  
     </div>
     <img class="card-icon" src="${iconURL}/${weather[0].icon}@2x.png" />
@@ -18,10 +18,12 @@ export const createCard = (data) => {
     name,
     weather,
     main: { temp },
+    sys: { country },
   } = data;
 
   const parameters = {
     nameCity: name,
+    country,
     weather,
     temp: Math.floor(temp),
   };
