@@ -12,13 +12,23 @@ export const getData = async (citiesName = []) => {
       );
       const responseInJSON = await response.json();
 
-      if (responseInJSON.cod === "404") alert("Ciudad no encontrada");
+      if (responseInJSON.cod === "404")
+        swal({
+          title: "Uuups!!",
+          text: "City not found",
+          icon: "error",
+        });
 
       weatherOfCities.push(responseInJSON);
     }
 
     return weatherOfCities;
   } catch (err) {
+    swal({
+      title: "Uuups!!",
+      text: "Something went wrong",
+      icon: "error",
+    });
     console.log(err);
   }
 };
