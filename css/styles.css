@@ -40,6 +40,16 @@ body {
   padding: 50px;
 }
 
+.map #map {
+  width: 80%;
+  height: 300px;
+  margin-bottom: 70px;
+  border-radius: 15px;
+}
+.map .map-cityName {
+  margin-bottom: 20px;
+}
+
 header {
   margin-bottom: 30px;
 }
@@ -49,7 +59,7 @@ header h1 {
 }
 
 main {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   border-right: 1px solid var(--white-color);
 }
 .searcher {
@@ -152,6 +162,12 @@ footer a.underline {
     max-width: 500px;
     padding: 30px 15px;
   }
+
+  #map {
+    margin: 0 auto 70px;
+    height: 500px;
+  }
+
   main {
     border-right: 0;
   }
