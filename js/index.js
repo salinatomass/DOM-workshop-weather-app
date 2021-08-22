@@ -20,7 +20,7 @@ navigator.geolocation.getCurrentPosition(
     initCards({ lat, lon });
   },
   (err) => {
-    sanFranciscoCoords = { lat: 37.7749, lon: -122.4194 };
+    const sanFranciscoCoords = { lat: 37.7749, lon: -122.4194 };
     initCards(sanFranciscoCoords);
     console.log(err);
   }
