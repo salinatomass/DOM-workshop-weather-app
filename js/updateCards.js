@@ -3,14 +3,14 @@ import { createCard } from "./utils/createCard.js"; // returns the template of a
 
 const $cards = document.getElementById("cards");
 
-export const initCards = async (firstCityName, secondCityName) => {
-  const data = await getData([firstCityName, secondCityName]);
+export const initCards = async ({ lat, lon }) => {
+  const data = await getData([{ lat, lon }]);
 
-  $cards.append(createCard(data[0]), createCard(data[1])); // add the first and second card
+  $cards.append(createCard(data[0].list[0]), createCard(data[0].list[1])); // add the first and second card
 };
 
 export const updateCards = async (cityName = "") => {
-  const data = await getData([cityName]);
+  const data = await getData([{ cityName }]);
 
   const newCard = createCard(...data);
   const oldCards = $cards.querySelectorAll("div.card");

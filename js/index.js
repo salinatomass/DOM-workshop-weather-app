@@ -14,4 +14,14 @@ $submitButton.addEventListener("click", (e) => {
   }
 });
 
-initCards("London", "Melbourne");
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    const { latitude: lat, longitude: lon } = position.coords;
+    initCards({ lat, lon });
+  },
+  (err) => {
+    sanFranciscoCoords = { lat: 37.7749, lon: -122.4194 };
+    initCards(sanFranciscoCoords);
+    console.log(err);
+  }
+);
