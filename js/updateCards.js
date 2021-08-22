@@ -1,72 +1,20 @@
-const baseAPI = "https://api.openweathermap.org/data/2.5/weather";
-const apiKEY = "6a1ddb216b2f48966cd789b4bdc81cbf";
-const iconURL = "http://openweathermap.org/img/wn";
+import { getData } from "./utils/getData.js"; // returns [{weather info of a city}, {weather info from another city}]
+import { createCard } from "./utils/createCard.js"; // returns the template of a card
 
 const $cards = document.getElementById("cards");
 
-const getData = async (citiesName = []) => {
-  try {
-    const weatherOfCities = [];
+export const initCards = async (firstCityName, secondCityName) => {
+  const data = await getData([firstCityName, secondCityName]);
 
-    for (let i = 0; i < citiesName.length; i++) {
-      const response = await fetch(
-        `${baseAPI}?q=${citiesName[i]}&appid=${apiKEY}&units=metric`
-      );
-      const responseInJSON = await response.json();
-
-      if (responseInJSON.cod === "404") alert("Ciudad no encontrada");
-
-      weatherOfCities.push(responseInJSON);
-    }
-
-    return weatherOfCities;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const cardTemplate = ({ nameCity, weather, temp }) => {
-  return `<div>
-    <h1>${nameCity}</h1>
-    <p>${temp}<span>°C</span></p>
-    <img src="${iconURL}/${weather[0].icon}@2x.png" />
-    <p>${weather[0].description}</p>
-  </div>`;
-};
-
-const createContent = (data) => {
-  const {
-    name,
-    weather,
-    main: { temp },
-  } = data;
-
-  const parameters = {
-    nameCity: name,
-    weather,
-    temp: Math.floor(temp),
-  };
-
-  const container = document.createElement("div");
-  container.className = "card";
-  container.innerHTML = cardTemplate(parameters);
-
-  return container;
+  $cards.append(createCard(data[0]), createCard(data[1])); // add the first and second card
 };
 
 export const updateCards = async (cityName = "") => {
   const data = await getData([cityName]);
 
-  const newCard = createContent(...data);
-
+  const newCard = createCard(...data);
   const oldCards = $cards.querySelectorAll("div.card");
 
-  oldCards[1].remove();
-  oldCards[0].insertAdjacentElement("beforebegin", newCard);
-};
-
-export const initCards = async (firstCityName, secondCityName) => {
-  const data = await getData([firstCityName, secondCityName]);
-
-  $cards.append(createContent(data[0]), createContent(data[1]));
+  oldCards[1].remove(); // delete the last card
+  oldCards[0].insertAdjacentElement("beforebegin", newCard); // add the newCard to the start
 };
