@@ -6,7 +6,12 @@ const cardTemplate = ({ nameCity, weather, temp, country }) => {
       <h2 class="card-city">${nameCity}, ${country}</h2>
       <h3 class="card-temp">${temp}<span>°C</span></h3>  
     </div>
-    <img class="card-icon" src="${iconURL}/${weather[0].icon}@2x.png" />
+    <img 
+      class="card-icon" 
+      srcset="${iconURL}/${weather[0].icon}@2x.png, 
+              ${iconURL}/${weather[0].icon}@4x.png 2x, 
+              ${iconURL}/${weather[0].icon}@4x.png 3x" 
+    />
     <div class="card-miniwrapper">
       <p class="card-description">${weather[0].description}</p>
     </div>
