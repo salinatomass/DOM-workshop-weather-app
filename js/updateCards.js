@@ -1,27 +1,32 @@
-import { getData } from "./utils/getData.js"; // returns [{weather info of a city}, {weather info from another city}]
+import { getData } from "./utils/getData.js"; // returns a city or a list of cities
 import { createCard } from "./utils/createCard.js"; // returns the template of a card
 import { initMap } from "./utils/initMap.js";
 
 const $cards = document.getElementById("cards");
 const $mapCityName = document.getElementById("mapCityName");
 
-export const initCards = async ({ lat, lon }) => {
-  const data = await getData([{ lat, lon }]);
+export const defaultCoord = { lat: 37.7749, lon: -122.4194 }; // San Francisco coord
 
-  $cards.append(createCard(data[0].list[0]), createCard(data[0].list[1])); // add the first and second card
-  $mapCityName.textContent = data[0].list[0].name;
+export const initCards = async ({ lat, lon }) => {
+  const { list } = await getData({ lat, lon, cityName: undefined });
+
+  const firstCard = createCard(list[0]);
+  const secondCard = createCard(list[1]);
+  $cards.append(firstCard, secondCard); // add the first and second card
+
+  $mapCityName.textContent = list[0].name;
   initMap(lat, lon);
 };
 
 export const updateCards = async (cityName = "") => {
-  const data = await getData([{ cityName }]);
+  const data = await getData({ cityName, lat: undefined, lon: undefined });
 
-  const newCard = createCard(...data);
+  const newCard = createCard(data);
   const oldCards = $cards.querySelectorAll("div.card");
 
   oldCards[1].remove(); // delete the last card
   oldCards[0].insertAdjacentElement("beforebegin", newCard); // add the newCard to the start
 
-  $mapCityName.textContent = data[0].name;
-  initMap(data[0].coord.lat, data[0].coord.lon);
+  $mapCityName.textContent = data.name;
+  initMap(data.coord.lat, data.coord.lon);
 };

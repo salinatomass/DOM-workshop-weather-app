@@ -1,9 +1,25 @@
-import { updateCards, initCards } from "./updateCards.js";
+import { updateCards, initCards, defaultCoord } from "./updateCards.js";
 
 const $searchButton = document.getElementById("search");
 const $submitButton = document.getElementById("submit");
 
-let desiredCity = "";
+let desiredCity;
+
+const onSuccessGeolocation = (position) => {
+  const { latitude, longitude } = position.coords;
+  initCards({ lat: latitude, lon: longitude });
+};
+
+const onErrorGeolocation = (err) => {
+  initCards(defaultCoord);
+
+  console.log("Geolocation error: ", err);
+};
+
+navigator.geolocation.getCurrentPosition(
+  onSuccessGeolocation,
+  onErrorGeolocation
+);
 
 $submitButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -13,15 +29,3 @@ $submitButton.addEventListener("click", (e) => {
     updateCards(desiredCity);
   }
 });
-
-navigator.geolocation.getCurrentPosition(
-  (position) => {
-    const { latitude: lat, longitude: lon } = position.coords;
-    initCards({ lat, lon });
-  },
-  (err) => {
-    const sanFranciscoCoords = { lat: 37.7749, lon: -122.4194 };
-    initCards(sanFranciscoCoords);
-    console.log(err);
-  }
-);
