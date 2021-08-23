@@ -1,4 +1,4 @@
-const iconURL = "http://openweathermap.org/img/wn";
+const iconURL = "https://openweathermap.org/img/wn";
 
 const cardTemplate = ({ nameCity, weather, temp, country }) => {
   return `<div class="card-item">
