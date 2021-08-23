@@ -16,10 +16,16 @@ const onErrorGeolocation = (err) => {
   console.log("Geolocation error: ", err);
 };
 
-navigator.geolocation.getCurrentPosition(
-  onSuccessGeolocation,
-  onErrorGeolocation
-);
+if ("geolocation" in navigator) {
+  /* geolocation is available */
+  navigator.geolocation.getCurrentPosition(
+    onSuccessGeolocation,
+    onErrorGeolocation
+  );
+} else {
+  /* geolocation is NOT available */
+  initCards(defaultCoord);
+}
 
 $submitButton.addEventListener("click", (e) => {
   e.preventDefault();
