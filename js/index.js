@@ -13,7 +13,7 @@ const onSuccessGeolocation = (position) => {
 const onErrorGeolocation = (err) => {
   initCards(defaultCoord);
 
-  console.log("Geolocation error: ", err);
+  console.log("Geolocation error: ", err.message);
 };
 
 if ("geolocation" in navigator) {

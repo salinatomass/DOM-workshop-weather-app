@@ -10,9 +10,9 @@ export const defaultCoord = { lat: 37.7749, lon: -122.4194 }; // San Francisco c
 export const initCards = async ({ lat, lon }) => {
   const { list } = await getData({ lat, lon, cityName: undefined });
 
-  const firstCard = createCard(list[0]);
-  const secondCard = createCard(list[1]);
-  $cards.append(firstCard, secondCard); // add the first and second card
+  const mainCityCard = createCard(list[0]);
+  const nearbyCityCard = createCard(list[1]);
+  $cards.append(mainCityCard, nearbyCityCard); // add the first and second card
 
   $mapCityName.textContent = list[0].name;
   initMap(lat, lon);

@@ -12,8 +12,8 @@ export const getData = async (city = { cityName, lat, lon }) => {
 
       if (data.cod === "404")
         swal({
-          title: "Uuups!!",
-          text: "City not found",
+          title: "City not found!",
+          text: "Try again",
           icon: "error",
         });
 
@@ -26,8 +26,8 @@ export const getData = async (city = { cityName, lat, lon }) => {
 
       if (data.cod === "404")
         swal({
-          title: "Uuups!!",
-          text: "City not found",
+          title: "Something went wrong!",
+          text: "Try again",
           icon: "error",
         });
 
