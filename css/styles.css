@@ -150,11 +150,11 @@ footer a {
   color: var(--white-color);
   text-decoration: none;
 }
-footer a:hover {
-  color: var(--secondary-color);
-}
 footer a.underline {
-  text-decoration: underline;
+  border-bottom: 2px solid var(--white-color);
+}
+footer a:hover {
+  border-bottom: 2px solid var(--secondary-color);
 }
 
 @media screen and (max-width: 768px) {
